@@ -16,9 +16,9 @@ const ProfileComponent = () => {
       try {
         const name = localStorage.getItem('userName');
         if (name) {
-          const userResponse = await axios.get(`http://localhost:5000/api/users?name=${name}`);
+          const userResponse = await axios.get(`https://careerdhrishti-backend.onrender.com/api/users?name=${name}`);
           const userId = userResponse.data.userId;
-          const profileResponse = await axios.get(`http://localhost:5000/api/users/${userId}`);
+          const profileResponse = await axios.get(`hhttps://careerdhrishti-backend.onrender.com/api/users/${userId}`);
           const userData = profileResponse.data;
 
           setProfile({

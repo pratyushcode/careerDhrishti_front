@@ -27,13 +27,13 @@ const MyMentor = () => {
 
         // Fetch userId based on userName
         if (name) {
-          const response = await axios.get(`http://localhost:5000/api/users?name=${name}`);
+          const response = await axios.get(`https://careerdhrishti-backend.onrender.com/api/users?name=${name}`);
           setUserId(response.data.userId);
         }
 
         // Fetch quiz results based on userId
         if (userId) {
-          const resultsResponse = await axios.get(`http://localhost:5000/api/quiz-results/${userId}`);
+          const resultsResponse = await axios.get(`https://careerdhrishti-backend.onrender.com/api/quiz-results/${userId}`);
           setQuizResults(resultsResponse.data);
         }
       } catch (error) {
