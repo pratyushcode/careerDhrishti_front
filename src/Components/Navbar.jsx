@@ -26,12 +26,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const name = localStorage.getItem("userName");
-    console.log(name);
     if (name) {
       setUserName(name);
     }
   }, []);
-
 
   return (
     <nav className="bg-white px-2 py-2.5 w-full rounded shadow">
@@ -51,7 +49,7 @@ const Navbar = () => {
             id="menu-toggle"
             type="button"
             onClick={toggleMobileMenu}
-            className="inline-flex items-center p-2 ml-3 text-sm text-black rounded-lg hover:bg-gray-100 focus:outline-none md:hidden"
+            className="inline-flex items-center p-2 ml-3 text-sm text-black rounded-lg hover:bg-gray-100 focus:outline-none sm-md:hidden"
           >
             <span className="sr-only">Open main menu</span>
             {/* Hamburger icon */}
@@ -66,20 +64,46 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className={`w-full md:block md:w-auto ${mobileMenuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
-          <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+        <div className={`w-full sm-md:block sm-md:w-auto ${mobileMenuOpen ? 'block' : 'hidden'}`} id="mobile-menu">
+          <ul className="flex flex-col mt-4 sm-md:flex-row sm-md:space-x-8 sm-md:mt-0 sm-md:text-sm sm-md:font-medium">
             <ListItem to="/">Home</ListItem>
             <ListItem to="/about">About</ListItem>
             <ListItem to="/quiz">Career Quiz</ListItem>
             <ListItem to="/resources">Resources</ListItem>
             <ListItem to="/expert">Talk to an Expert</ListItem>
             <ListItem to="/blog">Blog</ListItem>
+            {userName ? (
+              <>
+                <li>
+                  <Link to="/dashboard" className="block text-center py-2 text-base pr-4 pl-3 text-black hover:text-primary font-semibold sm-md:hidden">
+                    My Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-center px-4 py-2 text-red-600 hover:bg-red-200 sm-md:hidden"
+                  >
+                    Log Out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <Link to="/signin" className="block text-center py-2 text-base pr-4 pl-3 text-black hover:text-primary font-semibold sm-md:hidden">
+                  Sign in
+                </Link>
+                <Link to="/signup" className="block text-center py-2 text-base pr-4 pl-3 text-black hover:text-primary font-semibold sm-md:hidden">
+                  Sign Up
+                </Link>
+              </>
+            )}
           </ul>
         </div>
 
-        <div className="hidden justify-end gap-8 sm:flex lg:pr-0">
+        <div className="hidden justify-end gap-8 sm-md:flex lg:pr-0">
           {userName ? (
-            <div className="relative">
+            <div className="relative hidden sm-md:block">
               <button
                 onClick={toggleDropdown}
                 className="flex items-center space-x-2 text-base rounded-md font-medium text-dark bg-dark text-white bg-primary hover:bg-primary/90 px-4 py-2"
@@ -90,7 +114,6 @@ const Navbar = () => {
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
                   <Link to="/dashboard" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">My Profile</Link>
-                  
                   <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-200">Log Out</button>
                 </div>
               )}
@@ -99,13 +122,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/signin"
-                className="px-7 py-3 text-base rounded-md font-medium text-dark  bg-dark text-white bg-primary hover:bg-primary/90"
+                className="px-7 py-3 text-base rounded-md font-medium text-dark bg-dark text-white bg-primary hover:bg-primary/90 hidden sm-md:block"
               >
                 Sign in
               </Link>
               <Link
                 to="/signup"
-                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+                className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90 hidden sm-md:block"
               >
                 Sign Up
               </Link>

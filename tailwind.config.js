@@ -8,7 +8,10 @@ export default {
     extend: {
       colors:{
        primary:"#3758f9",
-      }
+      },
+      screens: {
+        'sm-md': '1030px', // Custom breakpoint at 790px
+      },
     },
   },
   plugins: [],
